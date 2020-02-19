@@ -18,7 +18,7 @@ console.log(process.env.PGUSER);
 app.get('/', (req, res) => res.sendFile(__dirname+'/index.html'));
 app.post('/register', (req, res) => { 
     addContent(req.body.name,req.body.assistant,req.body.age,req.body.date,req.body.time,req.body.comment);
-    res.send("submitted")
+    res.sendFile(__dirname+'/index.html')
    });
 
 
@@ -45,12 +45,12 @@ const addContent  = async(name, assistant, age,date,time, comment) =>{
 	try {
 		query = await client.query(text,values)
 		return query.rows;
-	//	await client.end()
+	
 	} catch(e) {
 		console.log("ERROR",e);
 	}
 	finally{
-		//await client.end()
+
 		
 	}
 }
